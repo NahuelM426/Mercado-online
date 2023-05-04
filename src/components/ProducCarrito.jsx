@@ -26,6 +26,7 @@ const ProducCarrito = (prods) => {
             </Text>
             <Text style={{ fontSize: 14, margin: 6,fontWeight: 'bold', backgroundColor: '#bde2e9', borderRadius: 4 }} >
                 Total: {prods.item.producto.Precio * prods.item.cantidad}
+                
             </Text>
             <View style={{ flexDirection: "row" }}>
                 <TouchableWithoutFeedback onPress={() => dispatch(incrementCantidad(prods.item))}>
