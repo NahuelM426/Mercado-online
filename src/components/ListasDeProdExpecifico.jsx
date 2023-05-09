@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FlatList, View, Text } from "react-native";
+import {View} from "react-native";
 import ProdExpecifico from "./ProdExpecifico";
 const ListasDeProdExpecifico = (props) => {
     const item = props.route.params.props.item.Productos
@@ -11,12 +11,12 @@ const ListasDeProdExpecifico = (props) => {
 
 
     return (
-        <View style={{ flexDirection: "row"}}>
+        <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 1, marginTop: 8}}>
             {!item
                 ? console.log("NULL", null)
                 : item.map((unCategoria, index) => {
                     return (
-                        <View style={{margin: 8}} >
+                        <View>
                             <ProdExpecifico
                                 item={unCategoria}
                                 navegacion={props}

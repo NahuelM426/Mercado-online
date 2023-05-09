@@ -1,13 +1,8 @@
-import react, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { Text } from "react-native";
 import { FlatList } from "react-native";
 import ListProductosCategoriaEspecífico from "./ListProductosCategoriaEspecífico";
-import Manaos from "./img/manaos.jpg"
-import Cocacola from "./img/cocacola.jpg"
-import Evian from "./img/evian.jpg"
-import Fanta from "./img/fanta.jpg"
-import Voss from "./img/voss.jpg"
-import Fiji from "./img/fiji.jpg"
+
 
 
 const ListProductosCategoria = (props) => {
@@ -46,7 +41,11 @@ const ListProductosCategoria = (props) => {
         },
         {
           "IdProducto": 89, "Categoria": 1, "name": "Manaos", "Precio": 400, "imagen": "https://plataforma.supersimple.com.ar/Panelcontenidos/Contenidos/1629311711-0-0.jpg"
-        }]
+        },
+        {
+          "IdProducto": 90, "Categoria": 1, "name": "Manaos", "Precio": 400, "imagen": "https://plataforma.supersimple.com.ar/Panelcontenidos/Contenidos/1629311711-0-0.jpg"
+        }
+      ]
       },
     ]
   }

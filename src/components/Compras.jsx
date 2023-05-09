@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, FlatList, ScrollView, StyleSheet } from "react-native";
+import { Text, View, ScrollView, StyleSheet } from "react-native";
 import ProducCarrito from "./ProducCarrito";
 import { useSelector } from "react-redux"
-
+import { Button } from "react-native";
+import {vaciar } from './Contador/CounterSlice'
+import { useDispatch } from "react-redux"
 
 const Compras = (prods) => {
-
+    const dispatch = useDispatch();
     const compras = useSelector((state) => state.counter);
     const [productos, setProductos] = useState([])
 
@@ -26,21 +28,37 @@ const Compras = (prods) => {
 
     return (
         <View>
-            <Text style={style.text} >Total: {totalapagar()}</Text>
-            <ScrollView>
-                    <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap",padding:1,marginTop:8 }}>
-                        {!compras.value
-                            ? console.log("NULL", null)
-                            : compras.value.map((unCategoria, index) => {
-                                return (
-                                    <View>
-                                        <ProducCarrito
-                                            item={unCategoria}
-                                            navegacion={prods}
-                                        />
-                                    </View>)
-                            })}
-                    </View>
+            <View style={style.text} >
+                <Text style={style.text} >Subtotal: {totalapagar()}</Text>
+            </View>
+            <ScrollView style={{ backgroundColor: "#faf9b9" }}>
+                <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 1, marginTop: 8 }}>
+                    {!compras.value
+                        ? console.log("NULL", null)
+                        : compras.value.map((unCategoria, index) => {
+                            return (
+                                <View>
+                                    <ProducCarrito
+                                        item={unCategoria}
+                                        navegacion={prods}
+                                    />
+                                </View>)
+                        })}
+                </View>
+                <View style={{ flexDirection: "row",alignItems: "flex-start", justifyContent: "space-around", flexWrap: "wrap",margin: 30,marginVertical:50 }}>
+                    <Button
+                        onPress={() => dispatch(vaciar())}
+                        title="Vaciar"
+                        color="#841584"
+
+                    />
+                     <Button
+                        onPress={() => alert("Mercado Libre")}
+                        title="Confirmar"
+                        color="#841584"
+
+                    />
+                </View>
             </ScrollView>
         </View>
     )
@@ -51,7 +69,8 @@ const style = StyleSheet.create({
     text: {
         fontSize: 20,
         margin: 6,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        alignItems: "flex-end"
     },
     view: {
         marginLeft: 13

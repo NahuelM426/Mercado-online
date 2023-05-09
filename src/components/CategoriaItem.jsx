@@ -1,4 +1,3 @@
-import react from "react";
 import { Text, View, StyleSheet, Image, TouchableWithoutFeedback } from "react-native";
 
 

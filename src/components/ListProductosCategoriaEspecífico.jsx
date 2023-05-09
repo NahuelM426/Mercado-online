@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text, FlatList, TouchableWithoutFeedback } from "react-native";
 import ProducItem from "./ProductItem";
 
@@ -13,7 +13,6 @@ const ListProductosCategoriaEspecífico = (props) => {
             />
         );
     };
-    const hola = "hola"
     //esto El conjunto de productos que tocas
     return (
         <TouchableWithoutFeedback onPress={() => props.navegacion.navigation.navigate("ListasExpecifico", { props: props })}>

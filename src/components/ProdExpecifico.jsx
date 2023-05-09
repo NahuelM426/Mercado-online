@@ -2,9 +2,8 @@ import React from "react";
 import { Text, View, StyleSheet, Image, Button, Alert, TouchableWithoutFeedback } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import Compras from "./Compras";
 import { useDispatch } from "react-redux"
-import { decrement, increment } from './Contador/CounterSlice'
+import {increment } from './Contador/CounterSlice'
 const ProdExpecifico = (prods) => {
 
     const dispatch = useDispatch();

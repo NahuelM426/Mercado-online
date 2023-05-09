@@ -12,8 +12,8 @@ const ProducCarrito = (prods) => {
     return (
         <View key={prods.id} style={style.view}>
             <TouchableWithoutFeedback onPress={() => dispatch(decrement(prods.item))}>
-                <View>
-                    <AntDesign name="closesquareo" size={24} color="black" />
+                <View >
+                    <AntDesign name="closecircle" size={24} color="black" />
                 </View>
             </TouchableWithoutFeedback>
             <Image style={style.image} source={{ uri: prods.item.producto.imagen }} />
@@ -24,20 +24,20 @@ const ProducCarrito = (prods) => {
                     {prods.item.producto.Precio}
                 </Text>
             </Text>
-            <Text style={{ fontSize: 14, margin: 6,fontWeight: 'bold', backgroundColor: '#bde2e9', borderRadius: 4 }} >
+            <Text style={{ fontSize: 14, margin: 6, fontWeight: 'bold', backgroundColor: '#bde2e9', borderRadius: 4 }} >
                 Total: {prods.item.producto.Precio * prods.item.cantidad}
-                
+
             </Text>
             <View style={{ flexDirection: "row" }}>
                 <TouchableWithoutFeedback onPress={() => dispatch(incrementCantidad(prods.item))}>
                     <View >
-                        <AntDesign name="pluscircleo" size={24} color="black" style={{margin:4}} />
+                        <AntDesign name="pluscircleo" size={24} color="black" style={{ margin: 4 }} />
                     </View>
                 </TouchableWithoutFeedback>
-                <Text style={{alignSelf:"center", fontSize: 18 }}>{prods.item.cantidad}</Text>
+                <Text style={{ alignSelf: "center", fontSize: 18 }}>{prods.item.cantidad}</Text>
                 <TouchableWithoutFeedback onPress={() => dispatch(decrementarCantidad(prods.item))}>
                     <View>
-                        <AntDesign name="minuscircleo" size={24} color="black" style={{margin:4}} />
+                        <AntDesign name="minuscircleo" size={24} color="black" style={{ margin: 4 }} />
                     </View>
                 </TouchableWithoutFeedback>
             </View>

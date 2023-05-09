@@ -1,8 +1,6 @@
-import react, { useState } from "react";
-import { Text, StyleSheet, FlatList, View, SafeAreaView } from "react-native";
+import {StyleSheet,View} from "react-native";
 import CategoriaItem from "./CategoriaItem";
-import Bebidas from "./img/bebidas.jpg"
-import Bazar from "./img/bazar.webp"
+
 
 const CategoriasConSubd = [
     {
@@ -34,7 +32,7 @@ const ListaCategoria = (props) => {
             ? console.log("NULL", null)
             : CategoriasConSubd.map((unCategoria, index) => {
                 return (
-            <View style={{  margin: 8 }} >
+            <View index style={{  margin: 8 }} >
                 <CategoriaItem
                     item={unCategoria}
                     navegacion={props}

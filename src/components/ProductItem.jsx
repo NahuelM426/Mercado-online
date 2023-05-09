@@ -2,9 +2,6 @@ import React from "react";
 import { Text, View, StyleSheet, Image, Button } from "react-native";
 
 const ProducItem = (prods) => {
-    const redirect = () => {
-        prods.navegacion.navigation.navigate("ProductosPorCategoria")
-    }
     return (
         <View key={prods.id} style={style.view}>
             <Image style={style.image} source={{ uri: prods.item.imagen}} />
