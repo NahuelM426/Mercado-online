@@ -12,7 +12,7 @@ const ProdExpecifico = (prods) => {
         <View key={prods.id} style={{margin:2}}>
             <Text style={style.text} >{prods.item.name}</Text>
             <Image style={style.image} source={{ uri: prods.item.imagen }} />
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row",alignItems:"flex-start" }}>
                 <Text style={{ marginTop: 2, }}>
                     <MaterialIcons name="attach-money" size={16} color="black" />
                     <Text style={{ margin: 2, fontSize: 16 }}>
@@ -46,6 +46,7 @@ const style = StyleSheet.create({
     image: {
         width: 100,
         height: 100,
-        borderRadius: 4
+        borderRadius: 4,
+        alignItems:"center"
     },
 })

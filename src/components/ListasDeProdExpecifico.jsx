@@ -1,12 +1,18 @@
-import React, { useEffect } from "react";
-import {View} from "react-native";
+import React, { useEffect,useState } from "react";
+import {View,StyleSheet} from "react-native";
 import ProdExpecifico from "./ProdExpecifico";
+
 const ListasDeProdExpecifico = (props) => {
     const item = props.route.params.props.item.Productos
+    
+    const [shadowRadius, setShadowRadius] = useState(1);
+    const [shadowOpacity, setShadowOpacity] = useState(0.3);
+    const [shadowOffsetWidth, setShadowOffsetWidth] = useState(12);
+    const [shadowOffsetHeight, setShadowOffsetHeight] = useState(-10);
 
     useEffect(() => {
         //Buscar Todos los productos de esa categoria
-        // console.log("Props", props)
+        console.log("Props", item)
     }, [])
 
 
@@ -16,7 +22,18 @@ const ListasDeProdExpecifico = (props) => {
                 ? console.log("NULL", null)
                 : item.map((unCategoria, index) => {
                     return (
-                        <View>
+                        <View key={index} style={[
+                            style.square,
+                            {
+                                shadowOffset: {
+                                    width: shadowOffsetWidth,
+                                    height: -shadowOffsetHeight,
+                                },
+                                shadowOpacity,
+                                shadowRadius,
+                                margin: 3
+                            },
+                        ]}>
                             <ProdExpecifico
                                 item={unCategoria}
                                 navegacion={props}
@@ -27,3 +44,13 @@ const ListasDeProdExpecifico = (props) => {
     )
 }
 export default ListasDeProdExpecifico
+const style = StyleSheet.create({
+    square: {
+        alignSelf: 'center',
+        backgroundColor: 'white',
+        borderRadius: 4,
+        height: 160,
+        shadowColor: 'black',
+        width: 120,
+    },
+})

@@ -4,9 +4,9 @@ import { Text, View, StyleSheet, Image, TouchableWithoutFeedback } from "react-n
 const CategoriaItem = (props) => {
     return (
         <TouchableWithoutFeedback onPress={() => props.navegacion.navigation.navigate("Productos")} >
-                <View >
+                <View style={{alignItems: "center"}}>
                     <Image style={style.image} source={{ uri: props.item.imagen }} />
-                    <Text> {props.item.name}</Text>
+                    <Text style={style.text}> {props.item.name}</Text>
                 </View>
         </TouchableWithoutFeedback >
     )
@@ -15,8 +15,9 @@ export default CategoriaItem
 
 const style = StyleSheet.create({
     text: {
-        fontSize: 12,
-        color: 'grey'
+        fontSize: 15,
+        color: 'grey',
+        fontWeight: 'bold'
     },
     bold: {
         fontWeight: 'bold'

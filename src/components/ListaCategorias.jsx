@@ -1,10 +1,11 @@
-import {StyleSheet,View} from "react-native";
+import { StyleSheet, View } from "react-native";
 import CategoriaItem from "./CategoriaItem";
+import React, { useState } from "react";
 
 
 const CategoriasConSubd = [
     {
-        "IdCategoria": 1, "IdPr": null, "name": "Bebidas", "imagen": "https://rickandmortyapi.com/api/character/avatar/1.jpeg", "CategoriasSubd": [
+        "IdCategoria": 1, "IdPr": null, "name": "Bebidas", "imagen": "https://cdn-icons-png.flaticon.com/512/1308/1308307.png", "CategoriasSubd": [
             {
                 "IdCategoria": 1, "Categoria": { "idCategoria": 1 }, "name": "Aguas", "Productos": [{
                     "IdProducto": 1, "Categoria": 1, "name": "Agua", "Precio": 200, "imagen": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
@@ -13,7 +14,7 @@ const CategoriasConSubd = [
         ]
     },
     {
-        "IdCategoria": 1, "IdPr": null, "name": "Bazar", "imagen": "https://rickandmortyapi.com/api/character/avatar/1.jpeg", "CategoriasSubd": [
+        "IdCategoria": 1, "IdPr": null, "name": "Bazar", "imagen": "https://www.shutterstock.com/image-vector/bazaar-rubber-stamp-grunge-seal-260nw-1461593039.jpg", "CategoriasSubd": [
             {
                 "IdCategoria": 2, "Categoria": { "idCategoria": 1 }, "name": "Aguas", "Productos": [{
                     "IdProducto": 2, "Categoria": 2, "name": "Evian", "Precio": 300, "imagen": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
@@ -25,23 +26,44 @@ const CategoriasConSubd = [
 
 
 const ListaCategoria = (props) => {
-  
+    const [shadowOffsetWidth, setShadowOffsetWidth] = useState(12);
+    const [shadowOffsetHeight, setShadowOffsetHeight] = useState(-10);
+    const [shadowOffsetWidthB, setShadowOffsetWidthB] = useState(-4);
+    const [shadowOffsetHeightB, setShadowOffsetHeightB] = useState(-6);
+    const [shadowRadius, setShadowRadius] = useState(1);
+    const [shadowOpacity, setShadowOpacity] = useState(0.3);
+
+    const Listar = () => {
+        const ListaDeCategoria = CategoriasConSubd.map((unCategoria,index) =>
+            <View key={index}  
+            style={[style.square,
+            {
+                shadowOffset: {
+                    width: shadowOffsetWidth,
+                    height: -shadowOffsetHeight,
+                },
+                shadowOpacity,
+                shadowRadius,
+                margin: 3,
+            }
+            ]} 
+            >
+            <CategoriaItem
+                item={unCategoria}
+                navegacion={props}
+            />
+            </View>
+        )
+        return ListaDeCategoria
+    }
     return (
-        <View style={{flexDirection:"row",}}>
-           {!CategoriasConSubd
-            ? console.log("NULL", null)
-            : CategoriasConSubd.map((unCategoria, index) => {
-                return (
-            <View index style={{  margin: 8 }} >
-                <CategoriaItem
-                    item={unCategoria}
-                    navegacion={props}
-                />
-            </View>)
-            })}
+        <View style={{ flexDirection: "row", }}>
+            {!CategoriasConSubd
+                ? console.log("NULL", null)
+                : Listar()}
         </View>
     )
-    
+
 }
 export default ListaCategoria
 const style = StyleSheet.create({
@@ -67,4 +89,12 @@ const style = StyleSheet.create({
         height: 100,
         borderRadius: 4
     },
+    square: {
+        alignSelf: 'center',
+        backgroundColor: 'white',
+        borderRadius: 4,
+        height: 130,
+        shadowColor: 'black',
+        width: 120,
+    }
 })

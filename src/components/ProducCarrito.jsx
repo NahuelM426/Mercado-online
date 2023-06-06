@@ -10,36 +10,38 @@ const ProducCarrito = (prods) => {
     const dispatch = useDispatch();
 
     return (
-        <View key={prods.id} style={style.view}>
-            <TouchableWithoutFeedback onPress={() => dispatch(decrement(prods.item))}>
+        <View key={prods.id}>
+            <TouchableWithoutFeedback onPress={() => dispatch(decrement(prods.item))}  >
                 <View >
                     <AntDesign name="closecircle" size={24} color="black" />
                 </View>
             </TouchableWithoutFeedback>
-            <Image style={style.image} source={{ uri: prods.item.producto.imagen }} />
-            <Text style={style.text} >{prods.item.producto.name}</Text>
-            <Text>
-                <MaterialIcons name="attach-money" size={18} color="black" />
-                <Text style={{ margin: 2, fontSize: 16 }}>
-                    {prods.item.producto.Precio}
+            <View style={style.view}>
+                <Image style={style.image} source={{ uri: prods.item.producto.imagen }} />
+                <Text style={style.text} >{prods.item.producto.name}</Text>
+                <Text>
+                    <MaterialIcons name="attach-money" size={18} color="black" />
+                    <Text style={{ margin: 2, fontSize: 16 }}>
+                        {prods.item.producto.Precio}
+                    </Text>
                 </Text>
-            </Text>
-            <Text style={{ fontSize: 14, margin: 6, fontWeight: 'bold', backgroundColor: '#bde2e9', borderRadius: 4 }} >
-                Total: {prods.item.producto.Precio * prods.item.cantidad}
+                <Text style={{ fontSize: 14, margin: 6, fontWeight: 'bold', backgroundColor: '#bde2e9', borderRadius: 4 }} >
+                    Total: {prods.item.producto.Precio * prods.item.cantidad}
 
-            </Text>
-            <View style={{ flexDirection: "row" }}>
-                <TouchableWithoutFeedback onPress={() => dispatch(incrementCantidad(prods.item))}>
-                    <View >
-                        <AntDesign name="pluscircleo" size={24} color="black" style={{ margin: 4 }} />
-                    </View>
-                </TouchableWithoutFeedback>
-                <Text style={{ alignSelf: "center", fontSize: 18 }}>{prods.item.cantidad}</Text>
-                <TouchableWithoutFeedback onPress={() => dispatch(decrementarCantidad(prods.item))}>
-                    <View>
-                        <AntDesign name="minuscircleo" size={24} color="black" style={{ margin: 4 }} />
-                    </View>
-                </TouchableWithoutFeedback>
+                </Text>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <TouchableWithoutFeedback onPress={() => dispatch(incrementCantidad(prods.item))}>
+                        <View >
+                            <AntDesign name="pluscircleo" size={24} color="black" style={{ margin: 4 }} />
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <Text style={{ alignSelf: "center", fontSize: 18 }}>{prods.item.cantidad}</Text>
+                    <TouchableWithoutFeedback onPress={() => dispatch(decrementarCantidad(prods.item))}>
+                        <View>
+                            <AntDesign name="minuscircleo" size={24} color="black" style={{ margin: 4 }} />
+                        </View>
+                    </TouchableWithoutFeedback>
+                </View>
             </View>
         </View>
     )
@@ -50,9 +52,11 @@ export default ProducCarrito
 const style = StyleSheet.create({
     text: {
         fontSize: 14,
+        fontWeight: 'bold',
     },
     view: {
-        marginLeft: 2
+        marginLeft: 2,
+        alignItems: "center"
     },
     image: {
         width: 100,

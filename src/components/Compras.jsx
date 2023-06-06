@@ -3,13 +3,19 @@ import { Text, View, ScrollView, StyleSheet } from "react-native";
 import ProducCarrito from "./ProducCarrito";
 import { useSelector } from "react-redux"
 import { Button } from "react-native";
-import {vaciar } from './Contador/CounterSlice'
+import { vaciar } from './Contador/CounterSlice'
 import { useDispatch } from "react-redux"
 
 const Compras = (prods) => {
     const dispatch = useDispatch();
     const compras = useSelector((state) => state.counter);
     const [productos, setProductos] = useState([])
+    const [shadowOffsetWidth, setShadowOffsetWidth] = useState(12);
+    const [shadowOffsetHeight, setShadowOffsetHeight] = useState(-10);
+    const [shadowRadius, setShadowRadius] = useState(1);
+    const [shadowOpacity, setShadowOpacity] = useState(0.3);
+    const [shadowOffsetWidthB, setShadowOffsetWidthB] = useState(-4);
+    const [shadowOffsetHeightB, setShadowOffsetHeightB] = useState(-6);
 
     useEffect(() => {
         console.log("Props Carrito", compras.value)
@@ -27,45 +33,71 @@ const Compras = (prods) => {
     }
 
     return (
-        <View>
-            <View style={style.text} >
+        <View >
+            <View style={[style.text,
+            {
+                shadowOffset: {
+                    width: shadowOffsetWidthB,
+                    height: -shadowOffsetHeightB,
+                },
+                shadowOpacity,
+                shadowRadius,
+            },]} >
                 <Text style={style.text} >Subtotal: {totalapagar()}</Text>
             </View>
-            <ScrollView style={{ backgroundColor: "#faf9b9" }}>
-                <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 1, marginTop: 8 }}>
+            <ScrollView >
+                <View style={{ flexDirection: "row", justifyContent: "space-around", flexWrap: "wrap", padding: 20, marginTop: 8 }}>
                     {!compras.value
                         ? console.log("NULL", null)
                         : compras.value.map((unCategoria, index) => {
                             return (
-                                <View>
+                                <View key={index} style={[style.square, {
+                                    shadowOffset: {
+                                        width: shadowOffsetWidth,
+                                        height: -shadowOffsetHeight,
+                                    },
+                                    shadowOpacity,
+                                    shadowRadius,
+                                    margin: 3
+                                }
+                                ]}>
                                     <ProducCarrito
                                         item={unCategoria}
                                         navegacion={prods}
                                     />
                                 </View>)
                         })}
-                </View>
-                <View style={{ flexDirection: "row",alignItems: "flex-start", justifyContent: "space-around", flexWrap: "wrap",margin: 30,marginVertical:50 }}>
-                    <Button
-                        onPress={() => dispatch(vaciar())}
-                        title="Vaciar"
-                        color="#841584"
 
-                    />
-                     <Button
-                        onPress={() => alert("Mercado Libre")}
-                        title="Confirmar"
-                        color="#841584"
-
-                    />
                 </View>
             </ScrollView>
+            <View style={{ flexDirection: "row", justifyContent: "space-around", position: "relative", alignItems: "flex-end", }}>
+                <Button
+                    onPress={() => dispatch(vaciar())}
+                    title="Vaciar"
+                    color="#841584"
+
+                />
+                <Button
+                    onPress={() => alert("Mercado Libre")}
+                    title="Confirmar"
+                    color="#841584"
+
+                />
+            </View>
         </View>
     )
 
 }
 export default Compras
 const style = StyleSheet.create({
+    square: {
+        alignSelf: 'center',
+        backgroundColor: 'white',
+        borderRadius: 4,
+        height: 230,
+        shadowColor: 'black',
+        width: 120,
+    },
     text: {
         fontSize: 20,
         margin: 6,

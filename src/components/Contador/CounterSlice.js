@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: []
+  value: [],
+  user:""
 }
 export const counterSlice = createSlice({
   name: 'counter',
@@ -11,7 +12,6 @@ export const counterSlice = createSlice({
       const taskIndex = state.value.findIndex(
         (task) => task.producto.IdProducto === action.payload.IdProducto
       );
-      // Si la tarea existe, cambiamos el estado de su propiedad done.
       if (taskIndex >= 0) {
         state.value[taskIndex].cantidad = state.value[taskIndex].cantidad + 1;
       } else {
@@ -46,9 +46,12 @@ export const counterSlice = createSlice({
     },
     vaciar:(state) =>{
       state.value = []
+    },
+    userGlob:(state,action) => {
+        state.user = action.payload
     }
   }
 })
-export const { increment, decrement, incrementByAmount,incrementCantidad,decrementarCantidad,vaciar } = counterSlice.actions
+export const { increment, decrement, incrementByAmount,incrementCantidad,decrementarCantidad,vaciar,userGlob } = counterSlice.actions
 
 export default counterSlice.reducer

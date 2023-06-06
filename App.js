@@ -6,9 +6,10 @@ import { Provider } from 'react-redux'
 
 
 export default function App() {
+  const userRole = 'admi'
   return (
       <Provider store={store}>
-        <Navegacion />
+        <Navegacion userRole={userRole} />
       </Provider>
   );
 }
