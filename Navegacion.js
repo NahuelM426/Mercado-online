@@ -8,6 +8,8 @@ import ListasDeProdExpecifico from './src/components/ListasDeProdExpecifico';
 import { FontAwesome } from '@expo/vector-icons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Compras from './src/components/Compras';
+import CargarProducto from './src/components/CargarProducto'
+import { AntDesign } from '@expo/vector-icons'; 
 
 
 import {useSelector} from "react-redux"
@@ -26,6 +28,7 @@ const Categorias = () => {
             <Stack.Screen name="ListasExpecifico" component={ListasDeProdExpecifico} />
             <Stack.Screen name='Compras' component={Compras} />
             <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="CargarProducto" component={CargarProducto}/>
         </Stack.Navigator>
     );
 }
@@ -68,16 +71,6 @@ const MyTabs = ({userRole}) => {
             <Tab.Screen
                 name="Carrito"
                 component={Compras}
-                listeners={({navigation,route}) => ({
-                    tabPress: (e) => {
-                        console.log("Onpres",compras)
-                        if(compras.user == 'user'){
-                            navigation.navigate('Carrito');
-                        }
-                        
-                      e.preventDefault();
-                    },
-                  })}
                 options={{
                     tabBarVisible: true,
                     tabBarLabel: 'Carrito',
@@ -112,6 +105,29 @@ const MyTabs = ({userRole}) => {
                     tabBarHideOnKeyboard: true,
                 }}
             />
+            {compras.user == 'admin' && (
+                <Tab.Screen
+                name="Cargar"
+                component={CargarProducto}
+                listeners={({navigation,route}) => ({
+                    tabPress: (e) => {
+                        console.log("Onpres",compras)
+                        if(compras.user == 'admin'){
+                            navigation.navigate('Cargar');
+                        }
+                        
+                        e.preventDefault();
+                    },
+                })}
+                options={{
+                    tabBarLabel: 'Cargar',
+                    tabBarIcon: ({ color, size }) => (
+                        <AntDesign name="cloudupload" size={24} color="black" />
+                        ),
+                        tabBarVisible: true,
+                    }}
+                    />
+        )}
         </Tab.Navigator>
     );
 }
