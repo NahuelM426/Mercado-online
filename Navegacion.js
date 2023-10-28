@@ -10,6 +10,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Compras from './src/components/Compras';
 import CargarProducto from './src/components/CargarProducto'
 import { AntDesign } from '@expo/vector-icons'; 
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 
 
 import {useSelector} from "react-redux"
@@ -21,6 +24,9 @@ const Stack = createNativeStackNavigator();
 
 const Categorias = () => {
     return (
+        // <Drawer.Navigator>
+        //     <Drawer.Screen name="Categorias" component={ListaCategoria} />
+        // </Drawer.Navigator>
         <Stack.Navigator>
             <Stack.Screen name="Categorias" component={ListaCategoria} />
             <Stack.Screen name="Productos" component={ListProductosCategoria} />
@@ -105,20 +111,20 @@ const MyTabs = ({userRole}) => {
                     tabBarHideOnKeyboard: true,
                 }}
             />
-            {compras.user == 'admin' && (
+            {/* {compras.user == 'admin' && ( */}
                 <Tab.Screen
                 name="Cargar"
                 component={CargarProducto}
-                listeners={({navigation,route}) => ({
-                    tabPress: (e) => {
-                        console.log("Onpres",compras)
-                        if(compras.user == 'admin'){
-                            navigation.navigate('Cargar');
-                        }
+                // listeners={({navigation,route}) => ({ -- Esto es para diferenciar usuarios
+                //     tabPress: (e) => {
+                //         console.log("Onpres",compras)
+                //         if(compras.user == 'admin'){
+                //             navigation.navigate('Cargar');
+                //         }
                         
-                        e.preventDefault();
-                    },
-                })}
+                //         e.preventDefault();
+                //     },
+                // })}
                 options={{
                     tabBarLabel: 'Cargar',
                     tabBarIcon: ({ color, size }) => (
@@ -127,7 +133,7 @@ const MyTabs = ({userRole}) => {
                         tabBarVisible: true,
                     }}
                     />
-        )}
+        {/* )} */}
         </Tab.Navigator>
     );
 }
