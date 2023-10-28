@@ -27,15 +27,15 @@ const Categorias = () => {
         // <Drawer.Navigator>
         //     <Drawer.Screen name="Categorias" component={ListaCategoria} />
         // </Drawer.Navigator>
-        <Stack.Navigator>
-            <Stack.Screen name="Categorias" component={ListaCategoria} />
-            <Stack.Screen name="Productos" component={ListProductosCategoria} />
-            <Stack.Screen name="ProductosPorCategoria" component={ListProductosCategoriaEspecífico} />
-            <Stack.Screen name="ListasExpecifico" component={ListasDeProdExpecifico} />
-            <Stack.Screen name='Compras' component={Compras} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="CargarProducto" component={CargarProducto}/>
-        </Stack.Navigator>
+        // <Stack.Navigator>
+        //     <Stack.Screen name="Categorias" component={ListaCategoria} />
+        //     <Stack.Screen name="Productos" component={ListProductosCategoria} />
+        //     <Stack.Screen name="ProductosPorCategoria" component={ListProductosCategoriaEspecífico} />
+        //     <Stack.Screen name="ListasExpecifico" component={ListasDeProdExpecifico} />
+        //     <Stack.Screen name='Compras' component={Compras} />
+        //     <Stack.Screen name="Login" component={Login} />
+        //     <Stack.Screen name="CargarProducto" component={CargarProducto}/>
+        // </Stack.Navigator>
     );
 }
 
