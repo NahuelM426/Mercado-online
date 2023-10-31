@@ -21,7 +21,7 @@ import Login from './src/components/Login';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-
+//Test
 const Categorias = () => {
     return (
         // <Drawer.Navigator>
