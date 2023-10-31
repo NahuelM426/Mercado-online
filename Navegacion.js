@@ -9,13 +9,13 @@ import { FontAwesome } from '@expo/vector-icons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Compras from './src/components/Compras';
 import CargarProducto from './src/components/CargarProducto'
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
 
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux"
 import Login from './src/components/Login';
 
 const Tab = createBottomTabNavigator();
@@ -28,27 +28,28 @@ const Categorias = () => {
         //     <Drawer.Screen name="Categorias" component={ListaCategoria} />
         // </Drawer.Navigator>
         // <Stack.Navigator>
-        //     <Stack.Screen name="Categorias" component={ListaCategoria} />
-        //     <Stack.Screen name="Productos" component={ListProductosCategoria} />
-        //     <Stack.Screen name="ProductosPorCategoria" component={ListProductosCategoriaEspecífico} />
-        //     <Stack.Screen name="ListasExpecifico" component={ListasDeProdExpecifico} />
-        //     <Stack.Screen name='Compras' component={Compras} />
-        //     <Stack.Screen name="Login" component={Login} />
-        //     <Stack.Screen name="CargarProducto" component={CargarProducto}/>
-        // </Stack.Navigator>
+        <Stack.Navigator>
+            <Stack.Screen name="Categorias" component={ListaCategoria} />
+            <Stack.Screen name="Productos" component={ListProductosCategoria} />
+            <Stack.Screen name="ProductosPorCategoria" component={ListProductosCategoriaEspecífico} />
+            <Stack.Screen name="ListasExpecifico" component={ListasDeProdExpecifico} />
+            <Stack.Screen name='Compras' component={Compras} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="CargarProducto" component={CargarProducto} />
+        </Stack.Navigator>
     );
 }
 
-const MyTabs = ({userRole}) => {
+const MyTabs = ({ userRole }) => {
     const compras = useSelector((state) => state.counter);
-    console.log("userRole",compras.user)
+    console.log("userRole", compras.user)
     return (
         <Tab.Navigator
             initialRouterName="Home"
             screenOptions={{
                 tabBarActiveTintColor: "purple"
             }}
-            >
+        >
             <Tab.Screen
                 name="Home"
                 component={Categorias}
@@ -87,7 +88,7 @@ const MyTabs = ({userRole}) => {
                     tabBarVisible: true,
                 }}
             />
-                <Tab.Screen
+            <Tab.Screen
                 name="Login"
                 component={Login}
                 options={{
@@ -111,29 +112,29 @@ const MyTabs = ({userRole}) => {
                     tabBarHideOnKeyboard: true,
                 }}
             />
-            {/* {compras.user == 'admin' && ( */}
-                <Tab.Screen
+            {compras.user == 'admin' && (
+            <Tab.Screen
                 name="Cargar"
                 component={CargarProducto}
-                // listeners={({navigation,route}) => ({ -- Esto es para diferenciar usuarios
-                //     tabPress: (e) => {
-                //         console.log("Onpres",compras)
-                //         if(compras.user == 'admin'){
-                //             navigation.navigate('Cargar');
-                //         }
-                        
-                //         e.preventDefault();
-                //     },
-                // })}
+                listeners={({navigation,route}) => ({ //-- Esto es para diferenciar usuarios
+                    tabPress: (e) => {
+                        console.log("Onpres",compras)
+                        if(compras.user == 'admin'){
+                            navigation.navigate('Cargar');
+                        }
+
+                        e.preventDefault();
+                    },
+                })}
                 options={{
                     tabBarLabel: 'Cargar',
                     tabBarIcon: ({ color, size }) => (
                         <AntDesign name="cloudupload" size={24} color="black" />
-                        ),
-                        tabBarVisible: true,
-                    }}
-                    />
-        {/* )} */}
+                    ),
+                    tabBarVisible: true,
+                }}
+            />
+            )}
         </Tab.Navigator>
     );
 }
@@ -142,8 +143,8 @@ const MyTabs = ({userRole}) => {
 export default function Navegacion() {
 
     return (
-            <NavigationContainer>
-                <MyTabs />
-            </NavigationContainer>
+        <NavigationContainer>
+            <MyTabs />
+        </NavigationContainer>
     )
 }
